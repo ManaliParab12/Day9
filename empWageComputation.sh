@@ -11,6 +11,7 @@ else
     echo "Employee is Absent"
 fi
 
+isPartTime=0
 isFullTime=1
 empRatePerHr=20
 
@@ -20,7 +21,8 @@ if [ $isFullTime -eq $empCheck ]
 then
     empHrs=8;
 else
-    empHrs=0;
+    empHrs=4;
 fi
 
 dailyWage=$(($empHrs*$empRatePerHr))
+
