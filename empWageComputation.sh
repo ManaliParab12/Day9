@@ -20,11 +20,9 @@ numWorkingDays=20
 totalWorkHours=0
 totalWorkingDays=0
 
-while [[ $totalWorkHours -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
-do
-    ((totalWorkingDays++))
-    empCheck=$((RANDOM%3))
-         case $empCheck in
+function getWorkingHours() {
+
+         case $1 in
                   $isFullTime)
                         empHrs=8;
                         ;;
@@ -35,7 +33,12 @@ do
                         empHrs=0;
                         ;;
          esac
-         totalWorkHours=$(($totalWorkHours+$empHrs))
+}
+
+while [[ $totalWorkHours -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
+do
+        ((totalWorkingDays++))
+        getWorkingHours $((RANDOM%3))
+        totalWorkHours=$(($totalWorkHours+$empHrs))
 done
-         monthlyWage=$(($totalWorkHours*$empRatePerHr))
 
