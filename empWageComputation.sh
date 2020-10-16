@@ -1,15 +1,6 @@
 #!/bin/bash -x
 
-echo "Welcome to Employee Wage Computation"
-
-Attendance=$((RANDOM%2))
-
-if [ $Attendance -eq 1 ]
-then
-    echo "Employee is Present"
-else
-    echo "Employee is Absent"
-fi
+declare -A dailyWage
 
 isPartTime=1
 isFullTime=2
@@ -20,7 +11,16 @@ numWorkingDays=20
 totalWorkHours=0
 totalWorkingDays=0
 
-declare -A dailyWage
+echo "Welcome to Employee Wage Computation"
+
+Attendance=$((RANDOM%2))
+
+if [ $Attendance -eq 1 ]
+then
+    echo "Employee is Present"
+else
+    echo "Employee is Absent"
+fi
 
 function getWorkingHours() {
          local $empcheck=$1
@@ -55,4 +55,3 @@ done
 totalSalary=$(($totalWorkHours*$empRatePerhr))
 echo ${dailywage[@]}
 echo ${!dailyWage[@]}
-
